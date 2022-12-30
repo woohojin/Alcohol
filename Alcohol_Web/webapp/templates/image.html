@@ -1,0 +1,45 @@
+{% extends 'layout.html' %} {% block content %} {% load static %}
+<script type="text/javascript">
+  function win_upload() {
+    var op = "width=500, height=500, left=50,top=150";
+    open("../picture/", "", op);
+  }
+</script>
+
+<section class="center">
+  <p>이미지로 전통주 확인하기</p>
+  <p>AI를 이용해 전통주 이미지를 분석해서 분석한 전통주의 정보 제공</p>
+
+  <address id="change-submit" class="center">
+    <a href="../image/" class="button">이미지</a>
+    <a href="../camera/" class="button">카메라</a>
+  </address>
+
+  <form action="../predict/" name="f" method="post">
+    {% csrf_token %}
+    <input id="check" type="hidden" name="picture" />
+
+    <div id="uploaded-image" class="visible">
+      <img id="pic" width="250" height="296" src="{{pic}}" />
+    </div>
+
+    <address id="upload-button" class="center">
+      <a href="javascript:win_upload()" class="button">사진등록</a>
+      <input type="submit" value="완료" class="button" />
+    </address>
+  </form>
+
+  {% if bool == 1 %}
+  <div id="alcohol-info">
+    <span id="span">{{result}}</span>
+    <span>이름 : {{info.name}}</span>
+    <span>도수 : {{info.abv}}도</span>
+    <span>가격 : {{info.price}}원</span>
+    <span>용량 : {{info.standard}}</span>
+    <span>재료 : {{info.material}}</span>
+    <span>주조 : {{info.company}}</span>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}

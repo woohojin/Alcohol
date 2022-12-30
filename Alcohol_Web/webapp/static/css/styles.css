@@ -1,0 +1,102 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  background-color: #e0a879;
+  color: white;
+  border-radius: 15px;
+  font-size: 15px;
+}
+.invisible {
+  display: none;
+}
+.visible {
+  display: block;
+}
+
+html {
+  user-select: none;
+  font-family: "Noto Sans KR", serif;
+}
+body {
+  background-color: #f0f0f0;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+main {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  margin-top: 12px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0a879;
+  font-size: 30px;
+  font-weight: 700;
+}
+header > :first-child {
+  margin-left: 300px;
+  color: black;
+}
+
+section {
+  flex-direction: column;
+  margin-top: 50px;
+}
+section > :first-child {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+section > :nth-child(2) {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 60px;
+}
+address {
+  margin-bottom: 15px;
+}
+address :first-child {
+  margin-right: 30px;
+}
+#change-submit * {
+  font-size: 20px;
+  padding: 8px;
+}
+#uploaded-image {
+  margin-bottom: 15px;
+}
+#upload-button * {
+  font-size: 25px;
+}
+#upload-button :first-child {
+  padding: 9px;
+}
+#upload-button :nth-child(2) {
+  padding: 5px;
+}
+input[type="submit"] {
+  cursor: pointer;
+  border: none;
+}
+#alcohol-info {
+  display: flex;
+  flex-direction: column;
+}
+#alcohol-info > :first-child {
+  font-size: 23px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+#alcohol-info span {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
