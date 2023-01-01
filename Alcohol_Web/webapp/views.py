@@ -119,9 +119,18 @@ def predict_camera(request):
         ret, img_color = cap.read()
 
         if ret == False:
-            break
+            alcohol_info = Alcohol(name="Undefined",
+                                   abv=0,
+                                   price=0,
+                                   standard="Undefined",
+                                   material="Undefined",
+                                   company="Undefined")
+            alcohol_info.save()
+            result = "카메라가 존재하지 않습니다."
+            bool = 1
+            return render(request, "camera.html", {"result": result, "info": alcohol_info, "bool": bool})
 
-        cv2.imshow('bgr', img_color)
+        cv2.imshow('CAMERA', img_color)
 
         key = cv2.waitKey(1)
 
@@ -137,7 +146,8 @@ def predict_camera(request):
             img_width = 250  # 인식된 이미지 사이즈 조정
 
             # 이미지를 불러오고 predict 할 수 있도록 배열로 변경
-            predict_array = keras.preprocessing.image.img_to_array(img_color)
+            predict_array = keras.preprocessing.image.img_to_array(
+                img_color)
             predict_array = tf.expand_dims(predict_array, 0)
 
             model = tf.keras.models.load_model("model/first_model.h5")
@@ -145,7 +155,8 @@ def predict_camera(request):
             predictions = model.predict(predict_array)
             score = tf.nn.softmax(predictions[0])
 
-            class_names = ["geumjung", "ihwa", "naru", "peow", "red", "seonho"]
+            class_names = ["geumjung", "ihwa",
+                           "naru", "peow", "red", "seonho"]
 
             predict_alcohol = class_names[np.argmax(score)]
             predict_score = 100 * np.max(score)
